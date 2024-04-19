@@ -35,22 +35,26 @@ struct SeparatorPrint
 class Test
 {
 	int i{5};
-	int bob{10};
+	int bob{ 10 };
+	float bob2{10};
 public:
-	CLASS_INFO(Test, 2, i, bob);
+	CLASS_INFO(Test, 3, i, bob, bob2);
+};
+
+class Foo
+{
+	int Boo{10};
+	float Hoo{5.5f};
+	int Goo{20};
+	bool Woo{false};
+public:
+	CLASS_INFO(Foo, 4, Boo, Hoo, Goo, Woo);
 };
 
 int main()
 {
-	Test test;
-	test.Apply(
-		[]<typename T>(const T & _arg) 
-		{
-			std::cout << _arg << " ";
-		});
-	test.Apply(Print{ Test::Names() });
-	test.Apply(SimplePrint{});
-	test.Apply(SeparatorPrint{"!"});
-
+	Foo obj;
+	obj.Apply(Print{ obj.Names() });
+	obj.Apply(SimplePrint{});
 	return 0;
 }
