@@ -4,6 +4,14 @@
 #include <array>
 #include <string_view>
 
+template<typename Type>
+concept ReflectedType = requires(Type _t)
+{
+	{_t.Name() };
+	{_t.Names() };
+	{_t.Members() };
+	{_t.Apply() };
+};
 
 #define PARENS ()
 
